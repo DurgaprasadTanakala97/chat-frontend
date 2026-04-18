@@ -1,0 +1,109 @@
+.sidebar {
+  width: 280px;
+  height: 100vh;
+  background: #ffffff;
+  border-right: 1px solid #e5e7eb;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header */
+.sidebar-header {
+  padding: 16px;
+  margin-top: 4rem;
+  border-bottom: 1px solid #eee;
+}
+
+.header-top {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.title {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.filter {
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  color: #666;
+}
+
+/* Current user */
+.currentUser {
+  margin-top: 10px;
+  padding: 8px;
+  background: #f3f4f6;
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-between;
+}
+
+/* User list */
+.user-list {
+  flex: 1;
+  overflow-y: auto;
+}
+
+/* User item */
+.user-item {
+  width: 100%;
+  padding: 10px;
+  display: flex;
+  gap: 10px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  align-items: center;
+  transition: background 0.2s;
+}
+
+.user-item:hover {
+  background: #f9fafb;
+}
+
+.user-item.active {
+  background: #e0e7ff;
+}
+
+/* Avatar */
+.avatar-wrapper {
+  position: relative;
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+/* Online dot */
+.avatar-wrapper::after {
+  content: "";
+  position: absolute;
+  bottom: 2px;
+  right: 2px;
+  width: 10px;
+  height: 10px;
+  background: #22c55e;
+  border-radius: 50%;
+  border: 2px solid white;
+}
+
+/* User info */
+.user-info {
+  text-align: left;
+}
+
+.name {
+  font-weight: 500;
+}
+
+.status {
+  font-size: 12px;
+  color: #888;
+}

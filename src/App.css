@@ -1,0 +1,35 @@
+/* The container: centers the loader perfectly on the screen */
+.loader-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh; /* h-screen */
+}
+html, body {
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+}
+
+.login-container {
+  height: 100vh;
+  display: flex;
+}
+
+.loader {
+  width: 2.5rem; 
+  height: 2.5rem;
+  animation: spin 1s linear infinite; 
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  border-left-color: #3b82f6;
+  border-radius: 50%;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

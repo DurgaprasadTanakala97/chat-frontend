@@ -1,0 +1,64 @@
+/* Full page background */
+.min-h-screen {
+  min-height: 100vh;
+  background-color: #f3f4f6; /* light gray */
+}
+
+/* Center container */
+.flex {
+  display: flex;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+/* Top spacing */
+.pt-20 {
+  padding-top: 5rem;
+}
+
+.px-4 {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+/* Card container */
+.bg-white {
+  background-color: #ffffff;
+}
+
+.rounded-lg {
+  border-radius: 10px;
+}
+
+.shadow-md {
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Width + height */
+.w-full {
+  width: 100%;
+}
+
+.max-w-6xl {
+  max-width: 1100px;
+}
+
+/* Custom height calculation */
+.h-\[calc\(100vh-8rem\)\] {
+  height: calc(100vh - 8rem);
+}
+
+/* Inner layout */
+.h-full {
+  height: 100%;
+}
+
+.overflow-hidden {
+  overflow: hidden;
+}

@@ -1,0 +1,130 @@
+.chat-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background: #037491;
+}
+
+/* Messages */
+.messages-area {
+  flex: 1;
+  overflow-y: auto;
+  scroll-behavior: smooth;
+  padding: 20px;
+}
+
+/* Message row */
+.message-row {
+  display: flex;
+  margin-bottom: 10px;
+  align-items: flex-end;
+}
+
+.message-row.sender {
+  justify-content: flex-end;
+}
+
+.message-row.receiver {
+  justify-content: flex-start;
+}
+
+/* Avatar */
+.avatar img {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+}
+
+/* Bubble */
+.message-bubble {
+  max-width: 60%;
+  padding: 10px 12px;
+  border-radius: 12px;
+  margin: 0 8px;
+  position: relative;
+  background: #e5e7eb;
+}
+
+/* Sender bubble */
+.sender .message-bubble {
+  background: #4f46e5;
+  color: white;
+}
+
+/* Text */
+.message-text {
+  margin: 0;
+  font-size: 14px;
+}
+
+/* Media */
+.message-media {
+  max-width: 100%;
+  border-radius: 8px;
+  margin-bottom: 5px;
+}
+
+/* Time */
+.message-time {
+  font-size: 10px;
+  display: block;
+  margin-top: 4px;
+  text-align: right;
+  opacity: 0.7;
+}
+
+/* ========================= */
+/* 📱 MOBILE VIEW (<= 600px) */
+/* ========================= */
+@media (max-width: 600px) {
+  .messages-area {
+    padding: 10px;
+  }
+
+  .message-bubble {
+    max-width: 85%; /* more width for small screens */
+    padding: 8px 10px;
+    font-size: 13px;
+  }
+
+  .message-text {
+    font-size: 13px;
+  }
+
+  .message-time {
+    font-size: 9px;
+  }
+
+  .avatar img {
+    width: 26px;
+    height: 26px;
+  }
+
+  .message-row {
+    margin-bottom: 8px;
+  }
+}
+
+/* ========================= */
+/* 📲 TABLET VIEW (601px - 1024px) */
+/* ========================= */
+@media (min-width: 601px) and (max-width: 1024px) {
+  .messages-area {
+    padding: 15px;
+  }
+
+  .message-bubble {
+    max-width: 70%;
+    padding: 10px 12px;
+  }
+
+  .message-text {
+    font-size: 14px;
+  }
+
+  .avatar img {
+    width: 30px;
+    height: 30px;
+  }
+}

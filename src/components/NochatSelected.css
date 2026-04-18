@@ -1,0 +1,68 @@
+/* Container */
+.nochat-container {
+  width: 100%;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  
+  background-color: rgba(194, 26, 26, 0.5);
+  padding: 64px;
+}
+
+/* Content box */
+.nochat-content {
+  max-width: 400px;
+  text-align: center;
+}
+
+/* Icon wrapper */
+.icon-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+/* Icon box */
+.icon-box {
+  width: 64px;
+  height: 64px;
+  border-radius: 16px;
+  background-color: #dbeafe; /* light blue */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: bounce 1s infinite;
+}
+
+/* Icon */
+.icon {
+  width: 32px;
+  height: 32px;
+  color: #2563eb;
+}
+
+/* Title */
+.title {
+  font-size: 24px;
+  font-weight: bold;
+  color: #1f2937;
+  margin-bottom: 8px;
+}
+
+/* Subtitle */
+.subtitle {
+  color: #6b7280;
+  font-size: 14px;
+}
+
+/* Bounce animation */
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}

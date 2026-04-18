@@ -1,0 +1,68 @@
+/* Container */
+.skeleton-container {
+  flex: 1;
+  padding: 12px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Row */
+.skeleton-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+/* Sender (right side) */
+.skeleton-row.sender {
+  flex-direction: row-reverse;
+}
+
+/* Avatar */
+.skeleton-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #e5e7eb;
+  animation: pulse 1.5s infinite;
+}
+
+/* Bubble */
+.skeleton-bubble {
+  max-width: 220px;
+  padding: 10px;
+  border-radius: 12px;
+  background: #e5e7eb;
+  animation: pulse 1.5s infinite;
+}
+
+/* Lines */
+.skeleton-line {
+  height: 8px;
+  border-radius: 6px;
+  background: #d1d5db;
+  margin-bottom: 6px;
+}
+
+.skeleton-line.short {
+  width: 60%;
+}
+
+.skeleton-line.long {
+  width: 100%;
+}
+
+/* Animation */
+@keyframes pulse {
+  0% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.6;
+  }
+}

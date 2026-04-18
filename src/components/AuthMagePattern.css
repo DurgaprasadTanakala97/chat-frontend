@@ -1,0 +1,68 @@
+/* Container (hidden on small screens like lg:flex) */
+.auth-container {
+  display: none;
+}
+
+@media (min-width: 1024px) {
+  .auth-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 48px;
+  }
+}
+
+/* Box */
+.auth-box {
+  max-width: 400px;
+  text-align: center;
+}
+
+/* Grid */
+.grid-pattern {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-top: 40px;
+}
+
+/* Grid Items */
+.grid-item {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border-radius: 16px;
+  background-color: rgba(55, 65, 81, 0.3); /* gray-700/30 */
+}
+
+/* Pulse Animation */
+.pulse {
+  animation: pulseAnimation 1.5s infinite;
+}
+
+@keyframes pulseAnimation {
+  0% {
+    opacity: 0.4;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+  100% {
+    opacity: 0.4;
+    transform: scale(1);
+  }
+}
+
+/* Title */
+.title {
+  font-size: 24px;
+  font-weight: bold;
+  color: black;
+  margin-bottom: 16px;
+}
+
+/* Subtitle */
+.subtitle {
+  color: #374151; /* gray-700 */
+}
