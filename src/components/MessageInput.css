@@ -2,9 +2,13 @@
 
 .message-container {
   flex-shrink: 0;
-  padding: 10px 14px;
+  padding: 12px;
   background: #020617;
   border-top: 1px solid #1e293b;
+  min-height: 70px;   
+  display: flex;
+  align-items: center;
+  border: 2px solid red;
 }
 
 /* Input row */
@@ -12,18 +16,19 @@
   display: flex;
   align-items: center;
   gap: 8px;
+  width: 100%;
 }
 
 /* Text input */
 .input-area input[type="text"] {
   flex: 1;
-  padding: 10px 14px;
+  height: 40px;   /* 🔥 FORCE HEIGHT */
+  padding: 0 14px;
   border-radius: 20px;
   border: none;
   outline: none;
   background: #1e293b;
   color: white;
-  font-size: 14px;
 }
 
 /* Buttons */

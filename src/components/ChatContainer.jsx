@@ -73,6 +73,11 @@ const formatMessageTime = (date) => {
 
       {/* ✅ Messages */}
       <div className="messages-area">
+        {messages.length === 0 && (
+          <div className="empty-chat">
+            Start a conversation 👋
+          </div>
+        )}
         {messages?.map((message, index) => {
           const isSender = message?.senderId === authUser?._id;
 
