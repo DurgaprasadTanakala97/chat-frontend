@@ -10,6 +10,8 @@ export const connectSocket = (userId) => {
 
   socket = io("https://chat-backend-0iad.onrender.com", {
     query: { userId },
+    withCredentials: true,
+    transports: ["websocket"],
   });
 
   socket.on("connect", () => {

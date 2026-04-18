@@ -1,23 +1,42 @@
+/* ChatContainer.css */
+
 .chat-container {
-  flex: 1;
   display: flex;
   flex-direction: column;
   height: 100vh;
-  background: #037491;
+  width: 100%;
+  background: #0f172a; /* modern dark bg */
+  overflow: hidden;
+}
+
+/* Header */
+.chat-header {
+  flex-shrink: 0;
 }
 
 /* Messages */
 .messages-area {
   flex: 1;
   overflow-y: auto;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
   scroll-behavior: smooth;
-  padding: 20px;
 }
 
-/* Message row */
+/* Scrollbar (nice UI) */
+.messages-area::-webkit-scrollbar {
+  width: 6px;
+}
+.messages-area::-webkit-scrollbar-thumb {
+  background: #475569;
+  border-radius: 10px;
+}
+
+/* Message Row */
 .message-row {
   display: flex;
-  margin-bottom: 10px;
   align-items: flex-end;
 }
 
@@ -36,95 +55,42 @@
   border-radius: 50%;
 }
 
-/* Bubble */
+/* Message Bubble */
 .message-bubble {
-  max-width: 60%;
-  padding: 10px 12px;
-  border-radius: 12px;
+  max-width: 65%;
+  padding: 10px 14px;
+  border-radius: 14px;
   margin: 0 8px;
+  background: #1e293b;
+  color: #e2e8f0;
   position: relative;
-  background: #e5e7eb;
+  word-break: break-word;
 }
 
-/* Sender bubble */
+/* Sender */
 .sender .message-bubble {
-  background: #4f46e5;
+  background: #2563eb;
   color: white;
 }
 
 /* Text */
 .message-text {
-  margin: 0;
   font-size: 14px;
+  margin: 0;
 }
 
 /* Media */
 .message-media {
   max-width: 100%;
-  border-radius: 8px;
+  border-radius: 10px;
   margin-bottom: 5px;
 }
 
 /* Time */
 .message-time {
   font-size: 10px;
+  opacity: 0.6;
   display: block;
   margin-top: 4px;
   text-align: right;
-  opacity: 0.7;
-}
-
-/* ========================= */
-/* 📱 MOBILE VIEW (<= 600px) */
-/* ========================= */
-@media (max-width: 600px) {
-  .messages-area {
-    padding: 10px;
-  }
-
-  .message-bubble {
-    max-width: 85%; /* more width for small screens */
-    padding: 8px 10px;
-    font-size: 13px;
-  }
-
-  .message-text {
-    font-size: 13px;
-  }
-
-  .message-time {
-    font-size: 9px;
-  }
-
-  .avatar img {
-    width: 26px;
-    height: 26px;
-  }
-
-  .message-row {
-    margin-bottom: 8px;
-  }
-}
-
-/* ========================= */
-/* 📲 TABLET VIEW (601px - 1024px) */
-/* ========================= */
-@media (min-width: 601px) and (max-width: 1024px) {
-  .messages-area {
-    padding: 15px;
-  }
-
-  .message-bubble {
-    max-width: 70%;
-    padding: 10px 12px;
-  }
-
-  .message-text {
-    font-size: 14px;
-  }
-
-  .avatar img {
-    width: 30px;
-    height: 30px;
-  }
 }
