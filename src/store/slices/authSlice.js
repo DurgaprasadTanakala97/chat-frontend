@@ -55,6 +55,7 @@ export const signup = createAsyncThunk(
   "auth/sign-up",
   async (data, thunkApi) => {
     try {
+      console.log(data)
       const res = await axiosInstance.post("/user/sign-up", data);
       toast.success("Account created successfully");
       return res?.data?.user;

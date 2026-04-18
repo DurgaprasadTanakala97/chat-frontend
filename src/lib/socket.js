@@ -8,7 +8,7 @@ export const connectSocket = (userId) => {
 
   if (socket) return socket;
 
-  socket = io("http://localhost:5000", {
+  socket = io("https://chat-backend-0iad.onrender.com", {
     query: { userId },
   });
 
