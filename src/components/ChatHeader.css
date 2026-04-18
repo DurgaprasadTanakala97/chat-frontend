@@ -1,7 +1,7 @@
 /* ── Chat Header ─────────────────────────────── */
 .chat-header {
   flex-shrink: 0;
-  height: 72px; /* Increased height for better presence */
+  height: 72px; /* Consistent height across views */
   padding: 0 24px;
   background: var(--bg-surface);
   backdrop-filter: blur(12px);
@@ -10,6 +10,7 @@
   display: flex;
   align-items: center;
   z-index: 10;
+  position: relative; /* Ensure it stays in its own layer */
 }
 
 .header-content {
@@ -72,6 +73,10 @@
   color: var(--text-primary);
   margin: 0;
   letter-spacing: -0.01em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 180px; /* Prevent long names from pushing the close button */
 }
 
 .user-text p {
@@ -81,6 +86,7 @@
   display: flex;
   align-items: center;
   gap: 5px;
+  white-space: nowrap;
 }
 
 .status-indicator {
@@ -122,14 +128,16 @@
 /* Responsive tweaks */
 @media (max-width: 640px) {
   .chat-header {
-    height: 64px;
+    height: 72px; 
     padding: 0 16px;
   }
   .avatar {
-    width: 38px;
-    height: 38px;
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
   }
   .user-text h3 {
-    font-size: 14px;
+    font-size: 15px;
+    max-width: 120px;
   }
 }

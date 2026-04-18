@@ -1,15 +1,28 @@
 /* ── Navbar ─────────────────────────────────── */
 .navbar {
   flex-shrink: 0;
-  height: 60px;
-  display: flex;
-  align-items: center;
-  padding: 0 20px;
+  height: 64px;
   background: var(--bg-surface);
   border-bottom: 1px solid var(--border);
   backdrop-filter: blur(12px);
   z-index: 100;
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+}
+
+.navbar-container {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  height: 100%;
+}
+
+.navbar-content {
+  display: flex;
+  align-items: center;
   justify-content: space-between;
+  height: 100%;
 }
 
 /* Logo */
@@ -91,7 +104,12 @@
   height: 16px;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 640px) {
   .nav-text { display: none; }
   .nav-link, .nav-btn { padding: 8px; }
+  .navbar { padding: 0 12px; }
+}
+
+@media (max-width: 400px) {
+  .logo-text { display: none; }
 }

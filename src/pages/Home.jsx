@@ -9,7 +9,7 @@ const Home = () => {
 
   return (
     <div className="home-content">
-      <div className="home-card">
+      <div className={`home-card ${selectedUser ? "chat-selected" : ""}`}>
         <Sidebar />
         {!selectedUser ? <NoChatSelected /> : <ChatContainer />}
       </div>

@@ -8,6 +8,12 @@
   padding: 40px;
 }
 
+@media (max-width: 768px) {
+  .nochat-container {
+    display: none;
+  }
+}
+
 .nochat-content {
   text-align: center;
   max-width: 340px;

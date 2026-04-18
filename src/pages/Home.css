@@ -17,3 +17,15 @@
   box-shadow: var(--shadow-lg);
   min-width: 0;
 }
+
+/* ── Responsive ──────────────────────────────── */
+@media (max-width: 768px) {
+  .home-content {
+    padding: 0; /* Full width on mobile */
+  }
+  
+  .home-card {
+    border-radius: 0;
+    border: none;
+  }
+}

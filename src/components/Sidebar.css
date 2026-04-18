@@ -1,9 +1,6 @@
 /* ── Sidebar ─────────────────────────────────── */
 .sidebar {
-  width: 320px !important;
-  min-width: 320px !important;
-  max-width: 320px !important;
-  flex: 0 0 320px !important;
+  width: 320px;
   height: 100%;
   background: var(--bg-surface);
   border-right: 1px solid var(--border);
@@ -11,6 +8,18 @@
   flex-direction: column;
   overflow: hidden;
   z-index: 10;
+  transition: all 0.3s ease;
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    width: 100%;
+    border-right: none;
+  }
+
+  .chat-selected .sidebar {
+    display: none;
+  }
 }
 
 /* ── Header ──────────────────────────────────── */

@@ -9,6 +9,16 @@
   overflow: hidden;
 }
 
+@media (max-width: 768px) {
+  .messages-area {
+    padding: 16px 12px;
+  }
+  
+  .message-row {
+    max-width: 85% !important;
+  }
+}
+
 /* ── Messages scroll area ────────────────────── */
 .messages-area {
   flex: 1;
