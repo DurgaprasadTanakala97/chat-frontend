@@ -1,102 +1,98 @@
-import { Mail, MessageSquare,  LockIcon,  Loader2, User } from 'lucide-react';
+import { Mail, MessageSquare, Lock, Loader2, User, Eye, EyeOff } from 'lucide-react';
 import { useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
-import { Link,useNavigate } from "react-router-dom";
-import "./Register.css"
-import AuthMagePattern from "../components/AuthMagePattern";
-
+import { Link, useNavigate } from "react-router-dom";
+import "./Register.css";
 import { signup } from "../store/slices/authSlice";
 
 const Register = () => {
-  const [showPassword,setShowPassword] = useState(false);
-  const [formData ,setFormData] = useState({
-    fullName:"",
-    email:"",
-    password:""
-  });
- const navigate =  useNavigate()
- const { isSigningUp } = useSelector(state => state.auth); 
-  const dispatch = useDispatch();
-  const handleSubmit = (e)=>{
-        e.preventDefault();
-        dispatch(signup(formData))
-        navigate("/login");
-  }
-  return (
-    <div className="login-container">
-      <div className="login-left">
-        <div className="login-card">
+  const [showPassword, setShowPassword] = useState(false);
+  const [formData, setFormData] = useState({ fullName: "", email: "", password: "" });
 
-          <div className="login-header">
-            <div className="logo-box">
-              <MessageSquare className="logo-icon" />
+  const navigate = useNavigate();
+  const { isSigningUp } = useSelector(state => state.auth);
+  const dispatch = useDispatch();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    dispatch(signup(formData)).then(() => navigate("/login"));
+  };
+
+  return (
+    <div className="auth-page">
+      {/* Left – form */}
+      <div className="auth-left">
+        <div className="auth-card">
+
+          <div className="auth-header">
+            <div className="auth-logo-box">
+              <MessageSquare className="auth-logo-icon" />
             </div>
-            <h1 className="login-title">Welcome Back</h1>
-            <p className="login-subtitle">Sign in to your account</p>
+            <h1 className="auth-title">Create account</h1>
+            <p className="auth-subtitle">Join Quick-chat and start messaging</p>
           </div>
 
-          <form onSubmit={handleSubmit} className="login-form">
+          <form onSubmit={handleSubmit} className="auth-form">
 
-             <div className="input-group">
-              <label>fullName</label>
+            <div className="input-group">
+              <label htmlFor="reg-name">Full Name</label>
               <div className="input-wrapper">
                 <User className="input-icon" />
                 <input
+                  id="reg-name"
                   type="text"
                   className="input-field"
-                  placeholder="fullName"
+                  placeholder="John Doe"
                   value={formData.fullName}
-                  onChange={(e) =>
-                    setFormData({ ...formData, fullName: e.target.value })
-                  }
+                  onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
+                  required
                 />
               </div>
             </div>
 
             <div className="input-group">
-              <label>Email</label>
+              <label htmlFor="reg-email">Email</label>
               <div className="input-wrapper">
                 <Mail className="input-icon" />
                 <input
+                  id="reg-email"
                   type="email"
                   className="input-field"
-                  placeholder="example@gmail.com"
+                  placeholder="you@example.com"
                   value={formData.email}
-                  onChange={(e) =>
-                    setFormData({ ...formData, email: e.target.value })
-                  }
+                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                  required
                 />
               </div>
             </div>
 
             <div className="input-group">
-              <label>Password</label>
+              <label htmlFor="reg-password">Password</label>
               <div className="input-wrapper">
-                <LockIcon className="input-icon" />
+                <Lock className="input-icon" />
                 <input
+                  id="reg-password"
                   type={showPassword ? "text" : "password"}
                   className="input-field"
-                  placeholder="******"
+                  placeholder="••••••••"
                   value={formData.password}
-                  onChange={(e) =>
-                    setFormData({ ...formData, password: e.target.value })
-                  }
+                  onChange={(e) => setFormData({ ...formData, password: e.target.value })}
+                  required
                 />
                 <button
                   type="button"
                   className="toggle-btn"
                   onClick={() => setShowPassword(!showPassword)}
+                  aria-label="Toggle password"
                 >
-                  {showPassword}
+                  {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
                 </button>
               </div>
             </div>
 
-            <button type="submit" disabled={isSigningUp} className="login-btn">
+            <button type="submit" disabled={isSigningUp} className="auth-btn">
               {isSigningUp ? (
-                <>
-                  <Loader2 className="animate-spin" /> Loading...
-                </>
+                <><Loader2 size={18} className="animate-spin" /> Creating account…</>
               ) : (
                 "Create Account"
               )}
@@ -104,23 +100,28 @@ const Register = () => {
 
           </form>
 
-          <div className="login-footer">
-            <p>
-             Already have an account <Link to="/login">Sign In</Link>
-            </p>
+          <div className="auth-footer">
+            <p>Already have an account? <Link to="/login">Sign in</Link></p>
           </div>
 
         </div>
       </div>
 
-      <AuthMagePattern
-        title="Join our community!"
-        subtitle="Connect with friends and family,share your
-        thoughts and stay touch with your loves one.
-        "
-      />
+      {/* Right – decorative */}
+      <div className="auth-right">
+        <div className="auth-grid-dots" />
+        <div className="auth-right-content">
+          <div className="auth-right-icon">
+            <MessageSquare />
+          </div>
+          <h2 className="auth-right-title">Join the community</h2>
+          <p className="auth-right-sub">
+            Connect with friends and family. Share moments and stay in touch, all in real time.
+          </p>
+        </div>
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default Register
+export default Register;

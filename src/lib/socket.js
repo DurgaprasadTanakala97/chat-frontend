@@ -8,7 +8,9 @@ export const connectSocket = (userId) => {
 
   if (socket) return socket;
 
-  socket = io("https://chat-backend-0iad.onrender.com", {
+  const URL = import.meta.env.MODE === "development" ? "http://localhost:5000" : "https://chat-backend-0iad.onrender.com";
+
+  socket = io(URL, {
     query: { userId },
     withCredentials: true,
     transports: ["websocket"],

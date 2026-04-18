@@ -15,19 +15,19 @@ const ChatContainer = () => {
   const dispatch = useDispatch();
   const messageEndRef = useRef(null);
 
-  // ✅ Load messages when user changes
+  // Load messages when user changes
   useEffect(() => {
     if (selectedUser?._id) {
       dispatch(getMessages(selectedUser._id));
     }
   }, [selectedUser?._id, dispatch]);
 
-  // ✅ Auto scroll to last message
+  // Auto scroll to last message
   useEffect(() => {
     messageEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
 
-  // ✅ Socket listener (FIXED)
+  // Socket listener
   useEffect(() => {
     const socket = getSocket();
     if (!socket || !selectedUser?._id) return;
@@ -37,26 +37,22 @@ const ChatContainer = () => {
     };
 
     socket.on("newMessage", handleNewMessage);
-
     return () => socket.off("newMessage", handleNewMessage);
   }, [selectedUser?._id, dispatch]);
 
-  // ✅ Format time
-const formatMessageTime = (date) => {
-  if (!date) return ""; // ✅ handle empty
+  // Format time
+  const formatMessageTime = (date) => {
+    if (!date) return "";
+    const d = new Date(date);
+    if (isNaN(d.getTime())) return "";
+    return d.toLocaleTimeString("en-US", {
+      hour: "2-digit",
+      minute: "2-digit",
+      hour12: false,
+    });
+  };
 
-  const d = new Date(date);
-
-  if (isNaN(d.getTime())) return ""; // ✅ handle invalid date
-    
-  return d.toLocaleTimeString("en-US", {
-    hour: "2-digit",
-    minute: "2-digit",
-    hour12: false,
-  });
-};
-
-  // ✅ Show skeleton while loading
+  // Show skeleton while loading
   if (isMessagesLoading) {
     return (
       <div className="chat-container">
@@ -71,26 +67,26 @@ const formatMessageTime = (date) => {
     <div className="chat-container">
       <ChatHeader />
 
-      {/* ✅ Messages */}
+      {/* Messages */}
       <div className="messages-area">
         {messages.length === 0 && (
           <div className="empty-chat">
-            Start a conversation 👋
+            <span className="empty-chat-emoji">👋</span>
+            Say hello to {selectedUser?.fullName?.split(" ")[0] || "your friend"}!
           </div>
         )}
+
         {messages?.map((message, index) => {
           const isSender = message?.senderId === authUser?._id;
 
           return (
             <div
-              key={message._id || message.createdAt || index} // ✅ FIXED KEY
+              key={message._id || message.createdAt || index}
               ref={index === messages.length - 1 ? messageEndRef : null}
-              className={`message-row ${
-                isSender ? "sender" : "receiver"
-              }`}
+              className={`message-row ${isSender ? "sender" : "receiver"}`}
             >
               {/* Avatar */}
-              <div className="avatar">
+              <div className="msg-avatar">
                 <img
                   src={
                     isSender
@@ -101,7 +97,7 @@ const formatMessageTime = (date) => {
                 />
               </div>
 
-              {/* Message Bubble */}
+              {/* Bubble */}
               <div className="message-bubble">
                 {/* Media */}
                 {message.media && (
@@ -126,16 +122,15 @@ const formatMessageTime = (date) => {
 
                 {/* Text */}
                 {message.text && (
-                  // <p className="message-text">{message.text}</p>
                   <p className="message-text">
-                   {message.text || message.message || "No message"}
-                </p>
+                    {message.text || message.message}
+                  </p>
                 )}
 
                 {/* Time */}
-              <span className="message-time">
-              {message.createdAt && formatMessageTime(message.createdAt)}
-              </span>
+                <span className="message-time">
+                  {message.createdAt && formatMessageTime(message.createdAt)}
+                </span>
               </div>
             </div>
           );

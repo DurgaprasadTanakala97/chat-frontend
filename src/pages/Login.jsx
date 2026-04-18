@@ -1,8 +1,7 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Mail, MessageSquare,  LockIcon,  Loader2 } from 'lucide-react';
+import { Eye, EyeOff, Mail, MessageSquare, Lock, Loader2 } from 'lucide-react';
 import { Link } from "react-router-dom";
-import AuthMagePattern from "../components/AuthMagePattern";
 import { login } from "../store/slices/authSlice";
 import "./Login.css";
 
@@ -10,7 +9,7 @@ const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({ email: "", password: "" });
 
-  const { isLoggingIn } = useSelector(state => state.auth); 
+  const { isLoggingIn } = useSelector(state => state.auth);
   const dispatch = useDispatch();
 
   const handleSubmit = async (e) => {
@@ -19,64 +18,64 @@ const Login = () => {
   };
 
   return (
-    <div className="login-container">
-      <div className="login-left">
-        <div className="login-card">
+    <div className="auth-page">
+      {/* Left – form */}
+      <div className="auth-left">
+        <div className="auth-card">
 
-          <div className="login-header">
-            <div className="logo-box">
-              <MessageSquare className="logo-icon" />
+          <div className="auth-header">
+            <div className="auth-logo-box">
+              <MessageSquare className="auth-logo-icon" />
             </div>
-            <h1 className="login-title">Welcome Back</h1>
-            <p className="login-subtitle">Sign in to your account</p>
+            <h1 className="auth-title">Welcome back</h1>
+            <p className="auth-subtitle">Sign in to continue your conversations</p>
           </div>
 
-          <form onSubmit={handleSubmit} className="login-form">
+          <form onSubmit={handleSubmit} className="auth-form">
 
             <div className="input-group">
-              <label>Email</label>
+              <label htmlFor="login-email">Email</label>
               <div className="input-wrapper">
                 <Mail className="input-icon" />
                 <input
+                  id="login-email"
                   type="email"
                   className="input-field"
-                  placeholder="example@gmail.com"
+                  placeholder="you@example.com"
                   value={formData.email}
-                  onChange={(e) =>
-                    setFormData({ ...formData, email: e.target.value })
-                  }
+                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                  required
                 />
               </div>
             </div>
 
             <div className="input-group">
-              <label>Password</label>
+              <label htmlFor="login-password">Password</label>
               <div className="input-wrapper">
-                <LockIcon className="input-icon" />
+                <Lock className="input-icon" />
                 <input
+                  id="login-password"
                   type={showPassword ? "text" : "password"}
                   className="input-field"
-                  placeholder="******"
+                  placeholder="••••••••"
                   value={formData.password}
-                  onChange={(e) =>
-                    setFormData({ ...formData, password: e.target.value })
-                  }
+                  onChange={(e) => setFormData({ ...formData, password: e.target.value })}
+                  required
                 />
                 <button
                   type="button"
                   className="toggle-btn"
                   onClick={() => setShowPassword(!showPassword)}
+                  aria-label="Toggle password visibility"
                 >
-                  {showPassword}
+                  {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
                 </button>
               </div>
             </div>
 
-            <button type="submit" disabled={isLoggingIn} className="login-btn">
+            <button type="submit" disabled={isLoggingIn} className="auth-btn">
               {isLoggingIn ? (
-                <>
-                  <Loader2 className="animate-spin" /> Loading...
-                </>
+                <><Loader2 size={18} className="animate-spin" /> Signing in…</>
               ) : (
                 "Sign In"
               )}
@@ -84,19 +83,26 @@ const Login = () => {
 
           </form>
 
-          <div className="login-footer">
-            <p>
-              Don’t have account? <Link to="/register">Create account</Link>
-            </p>
+          <div className="auth-footer">
+            <p>Don't have an account? <Link to="/register">Create one</Link></p>
           </div>
 
         </div>
       </div>
 
-      <AuthMagePattern
-        title="Welcome Back!"
-        subtitle="Sign in to continue your conversation"
-      />
+      {/* Right – decorative */}
+      <div className="auth-right">
+        <div className="auth-grid-dots" />
+        <div className="auth-right-content">
+          <div className="auth-right-icon">
+            <MessageSquare />
+          </div>
+          <h2 className="auth-right-title">Quick-chat</h2>
+          <p className="auth-right-sub">
+            Connect instantly with friends and colleagues. Fast, secure, real-time messaging.
+          </p>
+        </div>
+      </div>
     </div>
   );
 };

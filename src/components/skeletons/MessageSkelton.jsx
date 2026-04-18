@@ -7,19 +7,12 @@ const MessageSkeleton = () => {
     <div className="skeleton-container">
       {skeletons.map((_, index) => {
         const isSender = index % 2 !== 0;
-
         return (
-          <div
-            key={index}
-            className={`skeleton-row ${isSender ? "sender" : "receiver"}`}
-          >
-            {/* Avatar */}
-            <div className="skeleton-avatar"></div>
-
-            {/* Message */}
+          <div key={index} className={`skeleton-row ${isSender ? "sender" : "receiver"}`}>
+            <div className="skeleton-avatar sk" />
             <div className="skeleton-bubble">
-              <div className="skeleton-line short"></div>
-              <div className="skeleton-line long"></div>
+              <div className="skeleton-line short sk" />
+              <div className="skeleton-line long sk" />
             </div>
           </div>
         );

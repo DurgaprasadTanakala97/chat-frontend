@@ -9,139 +9,113 @@ const Profile = () => {
   const dispatch = useDispatch();
 
   const [selectedImage, setSelectedImage] = useState(null);
-
   const [formData, setFormData] = useState({
     fullName: authUser?.fullName || "",
     email: authUser?.email || "",
     avatar: null,
   });
 
-  // ✅ Image Upload Handler
   const handleImageUpload = (e) => {
     const file = e.target.files[0];
     if (!file) return;
-
     const reader = new FileReader();
+    reader.onload = () => setSelectedImage(reader.result);
     reader.readAsDataURL(file);
-
-    reader.onload = () => {
-      setSelectedImage(reader.result);
-    };
-
     setFormData({ ...formData, avatar: file });
   };
 
-  // ✅ Update Profile
-const handleUpdateProfile = () => {
-  const data = new FormData();
-  data.append("fullName", formData.fullName);
-  data.append("email", formData.email);
-
-  if (formData.avatar) {
-    data.append("avatar", formData.avatar);
-  }
-
-  dispatch(updateProfile(data));
-};
+  const handleUpdateProfile = () => {
+    const data = new FormData();
+    data.append("fullName", formData.fullName);
+    data.append("email", formData.email);
+    if (formData.avatar) data.append("avatar", formData.avatar);
+    dispatch(updateProfile(data));
+  };
 
   return (
-    <div className="profile-container">
+    <div className="profile-page">
       <div className="profile-card">
+
         {/* Header */}
         <div className="profile-header">
-          <h1>Profile</h1>
-          <p>Your profile information</p>
+          <h1>My Profile</h1>
+          <p>Update your personal information</p>
         </div>
 
-        {/* Avatar */}
-        <div className="avatar-section">
-          <div className="avatar-wrapper">
-            <img
-              src={
-                selectedImage ||
-                authUser?.avatar?.url ||
-                "/avatar-holder.avif"
-              }
-              alt="avatar"
-              className="avatar-img"
-            />
+        <div className="profile-body">
 
-            <label className="upload-btn">
-              <Camera size={18} color="#fff" />
-              <input
-                type="file"
-                accept="image/*"
-                onChange={handleImageUpload}
-                disabled={isUpdateProfile}
-                hidden
+          {/* Avatar */}
+          <div className="avatar-section">
+            <div className="avatar-wrapper">
+              <img
+                src={selectedImage || authUser?.avatar?.url || "/avatar-holder.avif"}
+                alt="avatar"
+                className="avatar-img"
               />
-            </label>
+              <label className="upload-btn" title="Change photo">
+                <Camera size={16} color="#fff" />
+                <input
+                  type="file"
+                  accept="image/*"
+                  onChange={handleImageUpload}
+                  disabled={isUpdateProfile}
+                  hidden
+                />
+              </label>
+            </div>
+            <p className="upload-text">
+              {isUpdateProfile ? "Uploading…" : "Click the camera icon to change photo"}
+            </p>
           </div>
 
-          <p className="upload-text">
-            {isUpdateProfile
-              ? "Uploading..."
-              : "Click camera icon to upload photo"}
-          </p>
-        </div>
+          {/* Form */}
+          <div className="profile-form">
+            <div className="form-group">
+              <label><User /> Full Name</label>
+              <input
+                type="text"
+                placeholder="Your full name"
+                value={formData.fullName}
+                onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
+              />
+            </div>
 
-        {/* Form */}
-        <div className="form-group">
-          <label>
-            <User size={16} /> Full Name
-          </label>
-          <input
-            type="text"
-            value={formData.fullName}
-            onChange={(e) =>
-              setFormData({ ...formData, fullName: e.target.value })
-            }
-          />
-        </div>
+            <div className="form-group">
+              <label><Mail /> Email Address</label>
+              <input
+                type="email"
+                placeholder="you@example.com"
+                value={formData.email}
+                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+              />
+            </div>
 
-        <div className="form-group">
-          <label>
-            <Mail size={16} /> Email
-          </label>
-          <input
-            type="email"
-            value={formData.email}
-            onChange={(e) =>
-              setFormData({ ...formData, email: e.target.value })
-            }
-          />
-        </div>
-
-        {/* Button */}
-        <button
-          className="update-btn"
-          onClick={handleUpdateProfile}
-          disabled={isUpdateProfile}
-        >
-          {isUpdateProfile ? (
-            <>
-              <Loader2 className="spin" size={18} /> Updating...
-            </>
-          ) : (
-            "Update Profile"
-          )}
-        </button>
-
-        {/* Account Info */}
-        <div className="account-box">
-          <h3>Account Information</h3>
-
-          <div className="account-row">
-            <span>Member Since</span>
-            <span>
-              {authUser?.createdAt?.split("T")[0] || "N/A"}
-            </span>
+            <button
+              className="update-btn"
+              onClick={handleUpdateProfile}
+              disabled={isUpdateProfile}
+            >
+              {isUpdateProfile ? (
+                <><Loader2 size={18} className="spin" /> Updating…</>
+              ) : (
+                "Save Changes"
+              )}
+            </button>
           </div>
 
-          <div className="account-row">
-            <span>Status</span>
-            <span className="active">Active</span>
+          {/* Account Info */}
+          <div className="account-box">
+            <h3>Account Information</h3>
+            <div className="account-row">
+              <span>Member Since</span>
+              <span>{authUser?.createdAt?.split("T")[0] || "N/A"}</span>
+            </div>
+            <div className="account-row">
+              <span>Status</span>
+              <span className="active">● Active</span>
+            </div>
           </div>
+
         </div>
       </div>
     </div>
